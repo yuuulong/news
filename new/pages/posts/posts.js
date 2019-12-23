@@ -1,21 +1,27 @@
 var postsData = require('../../data/posts-data.js')
 Page({
-  data:{
+  data: {
 
   },
   onPostTap: function(event) {
+    
     var postId = event.currentTarget.dataset.postid;
-    wx.navigateTo({
-      url: './post-detail/post-detail'
-    })
-    // console.log(postId)
-  }
-  ,
-  onLoad: function (options) {
     this.setData({
-      post_key:postsData.postList
+      postId: postId
     })
+    
   
+
+    // 文章跳转
+    wx.navigateTo({
+      url: './post-detail/post-detail?id=' + postId
+    })
+  },
+  onLoad: function(options) {
+    this.setData({
+      postdata: postsData.postList
+    })
+
   },
 
 })

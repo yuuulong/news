@@ -7,7 +7,7 @@ Page({
     //   url: './posts/posts'
     // })
     // 执行unload周期函数，所以不能返回。
-    wx.redirectTo({
+    wx.switchTab({
       url: './posts/posts',
     })
   },
