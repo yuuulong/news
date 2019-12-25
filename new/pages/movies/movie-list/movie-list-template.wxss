@@ -1,3 +1,4 @@
+@import "../movie/movie-template.wxss";
 .movie-list-container{
   background-color: #fff;
   display: flex;

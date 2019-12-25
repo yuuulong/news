@@ -6,7 +6,9 @@
     "pages/movies/movies",
     "pages/movies/stars/stars",
     "pages/movies/movie/movie-template",
-    "pages/movies/movie-list/movie-list-template"
+    "pages/movies/movie-list/movie-list-template",
+    "pages/movies/more-movie/more-movie",
+    "pages/movies/movie-grid/movie-grid-template"
   ],
   "window": {
     "backgroundTextStyle": "light",

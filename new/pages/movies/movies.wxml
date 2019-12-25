@@ -1,8 +1,18 @@
 <import src="movie-list/movie-list-template.wxml" />
-<view>
-  <template is="movieListTemplate"></template>
-  <template is="movieListTemplate"></template>
-  <template is="movieListTemplate"></template>
+<view class="search">
+   <icon type="String"></icon>
+   <input></input>
+</view>
+<view class="movies-all-container">
+<view  class="movie-template">
+  <template is="movieListTemplate" data="{{...inTheaters}}"></template>
+</view>
+<view  class="movie-template">
+  <template is="movieListTemplate" data="{{...comingSon}}"></template>
+</view>
+<view  class="movie-template">
+  <template is="movieListTemplate" data="{{...top250}}"></template>
+</view>
 
 
 
