@@ -1,19 +1,24 @@
 <import src="movie-list/movie-list-template.wxml" />
+<import src="movie-grid/movie-grid-template.wxml" />
+
 <view class="search">
-   <icon type="String"></icon>
-   <input></input>
-</view>
-<view class="movies-all-container">
-<view  class="movie-template">
-  <template is="movieListTemplate" data="{{...inTheaters}}"></template>
-</view>
-<view  class="movie-template">
-  <template is="movieListTemplate" data="{{...comingSon}}"></template>
-</view>
-<view  class="movie-template">
-  <template is="movieListTemplate" data="{{...top250}}"></template>
-</view>
+  <icon class="search-img1" type="search"></icon>
+  <input value="{{clear}}" bindconfirm="onBindBlur" bindfocus="onBindfocus" placeholder-class="placeholder" type="text" placeholder="搜索你喜欢的电影"></input>
+  <!-- <image src="/images/icon/xx.png" bindtap="onCancelImgTap"></image> -->
+  <icon bindtap="onCancelImgTap" wx:if="{{serachPanelShow}}" class="search-img2" type="clear"></icon>
 
-
-
+</view>
+<view class="movies-all-container" wx:if="{{containerShow}}">
+  <view class="movie-template">
+    <template is="movieListTemplate" data="{{...inTheaters}}"></template>
+  </view>
+  <view class="movie-template">
+    <template is="movieListTemplate" data="{{...comingSon}}"></template>
+  </view>
+  <view class="movie-template">
+    <template is="movieListTemplate" data="{{...top250}}"></template>
+  </view>
+</view>
+<view class="search-panel" wx:if="{{serachPanelShow}}">
+  <template is="movieGridTemplate" data="{{...searchResult}}"></template>
 </view>

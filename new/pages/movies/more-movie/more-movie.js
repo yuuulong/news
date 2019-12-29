@@ -9,6 +9,7 @@ Page({
   },
 
   onLoad: function (options) {
+   
     var category = options.category;
     this.setData({
       category:category
@@ -33,13 +34,23 @@ Page({
     })
     util.http(dataUrl, this.processDoubanData)
   },
-  // 滑动加载更多图片
-  onScrollLower:function(event){
+  // 底部向下滑动加载更多图片
+  onReachBottom:function(event){
     var nextUrl = this.data.dataUrl +
       "?start=" + this.data.totalCount  + "&count=" + (this.data.totalCount + 20)
     util.http(nextUrl, this.processDoubanData)
     // 滑动加载数据时候，loading小图标在顶部出现
     wx.showNavigationBarLoading()
+  },
+  // 顶部下拉重新加载页面
+  onPullDownRefresh: function (event) {
+    var refreshUrl = this.data.requestUrl +
+      "?star=0&count=20";
+    this.data.movies = [];
+    this.data.isEmpty = true;
+    this.data.totalCount = 0;
+    util.http(refreshUrl, this.processDoubanData);
+    wx.showNavigationBarLoading();
   },
   //清理数据
   processDoubanData: function (moviesDouban){
@@ -67,6 +78,8 @@ Page({
     });
     // 加载完数据后顶部loading小圆标消失
     wx.hideNavigationBarLoading()
+    // 下拉刷新结束
+    wx.stopPullDownRefresh()
   },
   onReady:function(){
     wx.startPullDownRefresh
@@ -76,6 +89,13 @@ Page({
       success:function(res){
 
       }
+    })
+  },
+  onMovieTap: function (event) {
+    //这个地方有个坑，event输出的id不是movieId了，而是变成movieid
+    var movieId = event.currentTarget.dataset.movieid;
+    wx.navigateTo({
+      url: "../movie-detail/movie-detail?id=" + movieId
     })
   },
 
